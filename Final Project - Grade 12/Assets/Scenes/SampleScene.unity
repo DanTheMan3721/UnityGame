@@ -12013,8 +12013,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 444805261
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1149363375, guid: b6b2d329dfa99f347b079b5eb794666c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12056,6 +12056,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b53b06bd4ed9c449e8ca11efbc36ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallSlidingSpeed: 7
+  wallJumpingPower: {x: 4, y: 8}
   wallCheckRight: {fileID: 168468644}
   wallCheckLeft: {fileID: 841558792}
   wallLayer:
@@ -12276,7 +12278,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000008d30831a63f2f839
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -12643,8 +12645,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 972616291
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -13108,6 +13110,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1974998444}
   - {fileID: 409920034}
+  - {fileID: 1974998444}
   - {fileID: 1830246067}

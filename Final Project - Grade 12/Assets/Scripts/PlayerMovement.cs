@@ -11,14 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
     private bool isWallSliding;
-    private float wallSlidingSpeed = 2f;
+    [SerializeField] private float wallSlidingSpeed = 2f;
 
     private bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    [SerializeField]  private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     [SerializeField] private Transform wallCheckRight;
     [SerializeField] private Transform wallCheckLeft;
@@ -134,8 +134,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            rb.velocity = new Vector2(-1 * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
+
+            if (transform.localScale.x != wallJumpingDirection)
+            {
+                sprite.flipX = !sprite.flipX;
+            }
+
 
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
