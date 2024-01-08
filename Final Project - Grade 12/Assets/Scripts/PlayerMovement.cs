@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.4f;
+    [SerializeField] private float wallJumpingDuration = 10f;
     [SerializeField]  private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     [SerializeField] private Transform wallCheckRight;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 14f;
     [SerializeField] private float maxFallSpeed = 30;
 
-    private enum MovementState { idle, running, jumping, falling }
+    private enum MovementState { idle, running, jumping, falling, wallSlide }
 
     private void Start()
     { 
@@ -44,16 +44,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Player Movement
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
-
-        if (Input.GetButtonDown("Jump") && jumpCheck())
+        if (!isWallJumping && !isWallSliding)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+            // Player Movement
+            dirX = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
 
-        if (rb.velocity.y < -maxFallSpeed) rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
+            if (!isWallSliding)
+            {
+                if (Input.GetButtonDown("Jump") && jumpCheck())
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
+            }
+
+            if (rb.velocity.y < -maxFallSpeed) rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
+        }
 
         AnimationStateUpdater();
 
@@ -64,30 +70,38 @@ public class PlayerMovement : MonoBehaviour
 
     private void AnimationStateUpdater()
     {
-        MovementState state;
-        
-        if (dirX > 0f)
+        MovementState state = 0;
+
+        if (!isWallSliding)
         {
-            state = MovementState.running;
-            sprite.flipX = false;
-        }
-        else if (dirX < 0f)
-        {
-            state = MovementState.running;
-            sprite.flipX = true;
-        }
-        else
-        {
-            state = MovementState.idle;
+            if (dirX > 0f)
+            {
+                state = MovementState.running;
+                sprite.flipX = false;
+            }
+            else if (dirX < 0f)
+            {
+                state = MovementState.running;
+                sprite.flipX = true;
+            }
+            else
+            {
+                state = MovementState.idle;
+            }
+
+            if (rb.velocity.y > 0.1f)
+            {
+                state = MovementState.jumping;
+            }
+            else if (rb.velocity.y < -0.1f)
+            {
+                state = MovementState.falling;
+            }
         }
 
-        if (rb.velocity.y > 0.1f)
+        if (isWallSliding)
         {
-            state = MovementState.jumping;
-        }
-        else if (rb.velocity.y < -0.1f)
-        {
-            state = MovementState.falling;
+            state = MovementState.wallSlide;
         }
 
         anim.SetInteger("State", (int)state);
@@ -105,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-        if (IsWalled() && !jumpCheck())
+        if (IsWalled() && dirX != 0f)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -121,7 +135,16 @@ public class PlayerMovement : MonoBehaviour
         if (isWallSliding)
         {
             isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
+
+            if (dirX > 0f)
+            {
+                wallJumpingDirection = -1;
+            }
+            else
+            {
+                wallJumpingDirection = 1;
+            }
+
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));
@@ -134,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
-            rb.velocity = new Vector2(-1 * wallJumpingPower.x, wallJumpingPower.y);
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
 
             if (transform.localScale.x != wallJumpingDirection)
