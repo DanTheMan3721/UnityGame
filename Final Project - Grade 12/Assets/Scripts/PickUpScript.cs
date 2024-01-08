@@ -9,7 +9,11 @@ public class PickUpScript : MonoBehaviour
     public int pickUpCount = 0;
     void OnTriggerEnter2D(Collider2D player)
     {
-        pickup.active = false;
-        pickUpCount++;
+        if(player.gameObject.tag == "Player")
+        {
+            pickup.active = false;
+            pickUpCount++;
+        }
+
     }
 }
