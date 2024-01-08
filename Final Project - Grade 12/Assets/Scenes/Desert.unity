@@ -1562,6 +1562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b53b06bd4ed9c449e8ca11efbc36ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallSlidingSpeed: 2
+  wallJumpingPower: {x: 8, y: 16}
   wallCheckRight: {fileID: 1221630902}
   wallCheckLeft: {fileID: 66122533}
   wallLayer:
@@ -1758,6 +1760,7 @@ GameObject:
   - component: {fileID: 1440575370}
   - component: {fileID: 1440575369}
   - component: {fileID: 1440575368}
+  - component: {fileID: 1440575373}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -1927,6 +1930,20 @@ Transform:
   - {fileID: 1840723122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440575373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440575367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f967e91c5af891d45b319f38d9128706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1200311699}
+  speed: 2
 --- !u!1 &1637489400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,6 +1955,7 @@ GameObject:
   - component: {fileID: 1637489401}
   - component: {fileID: 1637489403}
   - component: {fileID: 1637489402}
+  - component: {fileID: 1637489404}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1954,7 +1972,7 @@ Transform:
   m_GameObject: {fileID: 1637489400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2081,6 +2099,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1637489404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637489400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3847189cd5b0244a2bcd0fc4819447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1200311705}
 --- !u!1 &1840723121
 GameObject:
   m_ObjectHideFlags: 0
