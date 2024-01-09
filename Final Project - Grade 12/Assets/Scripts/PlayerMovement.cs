@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!isWallJumping && !isWallSliding)
+        if (!isWallJumping)
         {
             // Player Movement
             dirX = Input.GetAxisRaw("Horizontal");

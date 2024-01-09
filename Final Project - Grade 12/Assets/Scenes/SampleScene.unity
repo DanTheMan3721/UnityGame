@@ -12036,7 +12036,7 @@ Transform:
   m_GameObject: {fileID: 409920030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalPosition: {x: 50, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12056,8 +12056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b53b06bd4ed9c449e8ca11efbc36ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSlidingSpeed: 7
-  wallJumpingPower: {x: 4, y: 8}
+  wallSlidingSpeed: 1
+  wallJumpingDuration: 1
+  wallJumpingPower: {x: 10, y: 7}
   wallCheckRight: {fileID: 168468644}
   wallCheckLeft: {fileID: 841558792}
   wallLayer:
@@ -12065,7 +12066,7 @@ MonoBehaviour:
     m_Bits: 128
   jumpableGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   movementSpeed: 7
   jumpForce: 7
   maxFallSpeed: 30
