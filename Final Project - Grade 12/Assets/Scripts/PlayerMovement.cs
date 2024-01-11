@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Components
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
     private DeathLogic dl;
 
+    // Wall Sliding
     private bool isWallSliding;
     [SerializeField] private float wallSlidingSpeed = 2f;
 
+    // Wall Jumping
     private bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
@@ -28,11 +31,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private LayerMask jumpableGround;
 
+    // Jumping
     private float dirX = 0f;
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
     [SerializeField] private float maxFallSpeed = 30;
 
+    // Animations
     private enum MovementState { idle, running, jumping, falling, wallSlide }
 
     private void Start()
