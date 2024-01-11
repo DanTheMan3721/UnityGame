@@ -27,7 +27,6 @@ public class DeathLogic : MonoBehaviour
     private void Die()
     {
         dead = true;
-        rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
         GameOverScreen.Setup();
     }
