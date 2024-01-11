@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
+    private DeathLogic dl;
 
     private bool isWallSliding;
     [SerializeField] private float wallSlidingSpeed = 2f;
@@ -40,32 +41,36 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        dl = GetComponent<DeathLogic>();
     }
 
     private void Update()
     {
-        if (!isWallJumping)
+        if (!dl.dead)
         {
-            // Player Movement
-            dirX = Input.GetAxisRaw("Horizontal");
-            rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
-
-            if (!isWallSliding)
+            if (!isWallJumping)
             {
-                if (Input.GetButtonDown("Jump") && jumpCheck())
+                // Player Movement
+                dirX = Input.GetAxisRaw("Horizontal");
+                rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
+
+                if (!isWallSliding)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    if (Input.GetButtonDown("Jump") && jumpCheck())
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    }
                 }
+
+                if (rb.velocity.y < -maxFallSpeed) rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
             }
 
-            if (rb.velocity.y < -maxFallSpeed) rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
+            AnimationStateUpdater();
+
+            WallSlide();
+
+            WallJump();
         }
-
-        AnimationStateUpdater();
-
-        WallSlide();
-
-        WallJump();
     }
 
     private void AnimationStateUpdater()
