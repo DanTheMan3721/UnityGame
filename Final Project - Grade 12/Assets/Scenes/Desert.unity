@@ -2802,9 +2802,17 @@ PrefabInstance:
       value: Death
       objectReference: {fileID: 0}
     - target: {fileID: 7895999590485794700, guid: 23d7c4c3519aad142b9a977fc2610bea, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895999590485794700, guid: 23d7c4c3519aad142b9a977fc2610bea, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1200311699}
+    - target: {fileID: 7895999590485794700, guid: 23d7c4c3519aad142b9a977fc2610bea, type: 3}
+      propertyPath: walkStopRate
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7895999590485794700, guid: 23d7c4c3519aad142b9a977fc2610bea, type: 3}
       propertyPath: wallCheckLeft
       value: 

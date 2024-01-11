@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float speed;
     public DetectionZone attackZone;
     public float checkRadius;
+    public float walkStopRate = 0.6f;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
@@ -84,8 +85,12 @@ public class EnemyBehaviour : MonoBehaviour
         Vector2 direction = player.transform.position - transform.position;
         if (distance < checkRadius)
         {
-            if(!CanMove)
+            if(CanMove)
                 transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            else
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            }
         }
         else
         {
@@ -93,11 +98,11 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 FlipDirection();
             }
-            if (!CanMove)
+            if (CanMove)
                 rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
             else
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
             }
         }
         
