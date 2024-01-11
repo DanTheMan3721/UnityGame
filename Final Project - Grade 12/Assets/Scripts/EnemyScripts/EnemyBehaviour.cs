@@ -18,10 +18,6 @@ public class EnemyBehaviour : MonoBehaviour
     private float distance;
     private float dirX = 0f;
 
-    [SerializeField] private Transform wallCheckRight;
-    [SerializeField] private Transform wallCheckLeft;
-    [SerializeField] private LayerMask wallLayer;
-
     
     private SpriteRenderer sprite;
     private Animator anim;

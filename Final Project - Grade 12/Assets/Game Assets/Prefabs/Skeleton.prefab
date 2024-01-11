@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 8661826213652402311}
   - component: {fileID: 7895999590485794700}
   - component: {fileID: 6874940579702981273}
+  - component: {fileID: 448833846708958627}
   - component: {fileID: 1119980297166057915}
   m_Layer: 9
   m_Name: Skeleton
@@ -245,12 +246,7 @@ MonoBehaviour:
   speed: 2
   attackZone: {fileID: 3972439680959212970}
   checkRadius: 5
-  walkStopRate: 0.3
-  wallCheckRight: {fileID: 0}
-  wallCheckLeft: {fileID: 0}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  walkStopRate: 0.05
   HasTarget: 0
 --- !u!114 &6874940579702981273
 MonoBehaviour:
@@ -282,6 +278,22 @@ MonoBehaviour:
   wallDistance: 0.05
   isGrounded: 0
   isOnWall: 0
+--- !u!114 &448833846708958627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7467609946596536679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245232b38f6049a4bb03fce17b4441b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  health: 3
+  isAlive: 1
+  invincibilityTime: 0.25
 --- !u!70 &1119980297166057915
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -314,6 +326,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0032408237, y: -0.15106034}
-  m_Size: {x: 1.7821307, y: 2.9370089}
+  m_Offset: {x: 0.05, y: -0.12960374}
+  m_Size: {x: 1.7, y: 2.95}
   m_Direction: 0
