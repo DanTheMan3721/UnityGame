@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject player;
     public float speed;
+    public DetectionZone attackZone;
     public float checkRadius;
 
     Rigidbody2D rb;
+    TouchingDirections touchingDirections;
 
     private float distance;
     private float dirX = 0f;
@@ -19,10 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private Transform wallCheckLeft;
     [SerializeField] private LayerMask wallLayer;
 
-    private bool IsWalled()
-    {
-        return (Physics2D.OverlapCircle(wallCheckRight.position, 0.2f, wallLayer) || Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer));
-    }
+    
     private SpriteRenderer sprite;
     private Animator anim;
 
@@ -50,14 +49,33 @@ public class EnemyBehaviour : MonoBehaviour
             _walkDirection = value; }
     }
 
+    public bool HasTarget = false;
+    public bool hasTarget { get { return HasTarget; } private set 
+        {
+            HasTarget = value;
+            anim.SetBool(AnimationStrings.hasTarget, value);
+        } }
+    public bool CanMove
+    {
+        get
+        {
+            return anim.GetBool(AnimationStrings.canMove);
+        }
+    }
+
     private enum MovementState {idle, running, attack, Death}
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        touchingDirections = GetComponent<TouchingDirections>();
     }
 
+    private void Update()
+    {
+        hasTarget = attackZone.detectedCollisions.Count > 0;
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -66,15 +84,21 @@ public class EnemyBehaviour : MonoBehaviour
         Vector2 direction = player.transform.position - transform.position;
         if (distance < checkRadius)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            if(!CanMove)
+                transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
         }
         else
         {
-            if (IsWalled())
+            if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
             {
                 FlipDirection();
             }
-            rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
+            if (!CanMove)
+                rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
         
     }
@@ -99,12 +123,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         MovementState state;
 
-        if (walkDirection == WalkableDirection.Right)
+        if (walkDirectionVector == Vector2.left)
         {
             state = MovementState.running;
             sprite.flipX = false;
         }
-        else if (walkDirection == WalkableDirection.Left)
+        else if (walkDirectionVector == Vector2.right)
         {
             state = MovementState.running;
             sprite.flipX = true;
