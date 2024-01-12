@@ -81,8 +81,24 @@ public class EnemyBehaviour : MonoBehaviour
         Vector2 direction = player.transform.position - transform.position;
         if (distance < checkRadius)
         {
-            if(CanMove)
-                transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            if (CanMove)
+            {
+                //transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+                if (player.transform.position.x > transform.position.x) 
+                {
+                    walkDirection = WalkableDirection.Right;
+                    rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
+                }
+                else if (player.transform.position.x < transform.position.x)
+                {
+                    walkDirection = WalkableDirection.Left;
+                    rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+            }
             else
             {
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);

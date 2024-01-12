@@ -23,6 +23,14 @@ public class DeathLogic : MonoBehaviour
             Die();    
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == ("Death"))
+        {
+            Die();
+            
+        }
+    }
 
     private void Die()
     {
