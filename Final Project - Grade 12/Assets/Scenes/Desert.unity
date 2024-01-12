@@ -1917,8 +1917,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136495854}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &1169952152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,7 +2386,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
->>>>>>> d4af2926f365646c71f00c901bdb32e228817142
 --- !u!1 &1200311699
 GameObject:
   m_ObjectHideFlags: 0
