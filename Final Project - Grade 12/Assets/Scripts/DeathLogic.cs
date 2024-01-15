@@ -10,6 +10,8 @@ public class DeathLogic : MonoBehaviour
     public GameOverScreen GameOverScreen;
     public bool dead;
 
+    [SerializeField] private int deadWait = 5;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -36,6 +38,11 @@ public class DeathLogic : MonoBehaviour
     {
         dead = true;
         anim.SetTrigger("death");
+        Invoke("SetupAccess", deadWait);
+    }
+
+    private void SetupAccess()
+    {
         GameOverScreen.Setup();
     }
 }
