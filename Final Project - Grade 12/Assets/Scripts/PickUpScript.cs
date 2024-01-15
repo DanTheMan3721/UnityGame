@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUpScript : MonoBehaviour
 {
     public GameObject pickup;
-    public GameObject player;
     public int pickUpCount = 0;
-    void OnTriggerEnter2D(Collider2D player)
+    public TextMeshProUGUI count;
+    private void OnTriggerEnter2D(Collider2D pickUp)
     {
-        if(player.gameObject.tag == "Player")
+        if (pickUp.tag == "PickUp")
         {
-            pickup.active = false;
             pickUpCount++;
         }
 
+    }
+    private void Update()
+    {
+        count.text = "Gems Collected: " + pickUpCount.ToString();
     }
 }
