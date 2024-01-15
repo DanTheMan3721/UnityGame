@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     private DeathLogic dl;
+    private SlowFall sf;
 
     // Wall Sliding
     private bool isWallSliding;
@@ -31,11 +32,19 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private LayerMask jumpableGround;
 
-    // Jumping
+    // Regular Movement + Jumping
     private float dirX = 0f;
     [SerializeField] private float movementSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
     [SerializeField] private float maxFallSpeed = 30;
+    [SerializeField] private float sandMoveSpeed = 3f;
+    [SerializeField] private float sandJumpForce = 4f;
+
+    private float originalMoveSpeed;
+    private float originalJumpForce;
+
+    // Slow Falling
+    [SerializeField] private float slowFallSpeed = 2f;
 
     // Animations
     private enum MovementState { idle, running, jumping, falling, wallSlide }
@@ -47,6 +56,10 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         dl = GetComponent<DeathLogic>();
+        sf = GetComponent<SlowFall>();
+
+        originalMoveSpeed = movementSpeed;
+        originalJumpForce = jumpForce;
     }
 
     private void Update()
@@ -75,6 +88,18 @@ public class PlayerMovement : MonoBehaviour
             WallSlide();
 
             WallJump();
+
+            if (sf.inSand)
+            {
+                movementSpeed = sandMoveSpeed;
+                jumpForce = sandJumpForce;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -slowFallSpeed, float.MaxValue));
+            }
+            else
+            {
+                movementSpeed = originalMoveSpeed;
+                jumpForce = originalJumpForce;
+            }
         }
     }
 
