@@ -11,10 +11,8 @@ public class PickUpScript : MonoBehaviour
     public TextMeshProUGUI count;
     private void OnTriggerEnter2D(Collider2D pickUp)
     {
-        Debug.Log("Works?");
-        if (pickUp.tag == "pickUp")
+        if (pickUp.tag == "PickUp")
         {
-            Debug.Log("Works");
             pickUpCount++;
         }
 

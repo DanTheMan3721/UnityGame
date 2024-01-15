@@ -70,7 +70,7 @@ public class Damageable : MonoBehaviour
                 isInvincible=false;
                 timeSinceHit = 0;
             }
-
+            
             timeSinceHit += Time.deltaTime;
         }
         Hit(1);
