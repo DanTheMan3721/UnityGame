@@ -79,7 +79,10 @@ public class PlayerMovement : MonoBehaviour
                         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     }
                 }
-
+                if (Input.GetButtonDown("Fire1") && jumpCheck())
+                {
+                    anim.SetTrigger(AnimationStrings.attack);
+                }
                 if (rb.velocity.y < -maxFallSpeed) rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
             }
 

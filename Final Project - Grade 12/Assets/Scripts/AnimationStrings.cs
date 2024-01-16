@@ -9,4 +9,5 @@ public class AnimationStrings : MonoBehaviour
     internal static string hasTarget = "HasTarget";
     internal static string canMove = "canMove";
     internal static string isAlive = "isAlive";
+    internal static string attack = "Attack";
 }
