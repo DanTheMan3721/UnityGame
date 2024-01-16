@@ -73,7 +73,13 @@ public class Damageable : MonoBehaviour
             
             timeSinceHit += Time.deltaTime;
         }
-        Hit(1);
+       
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(isAlive && collision.tag == "Sword") {
+            Hit(100);
+        }
     }
     public void Hit(int damage)
     {
