@@ -8,7 +8,10 @@ public class SlowFall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        inSand = true;
+        if (collision.tag == "QuickSand")
+        {
+            inSand = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
