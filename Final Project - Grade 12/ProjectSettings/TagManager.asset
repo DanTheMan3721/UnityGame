@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Death
+  - QuickSand
   layers:
   - Default
   - TransparentFX
