@@ -5,14 +5,15 @@ using UnityEngine;
 public class FallingSpikes : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private BoxCollider2D boxCollider2D;
+
     [SerializeField] private float distance;
+    [SerializeField] private float aliveTime;
+    [SerializeField] private float gravScale = 5;
     private bool isFalling = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -28,23 +29,16 @@ public class FallingSpikes : MonoBehaviour
             {
                 if (hit.transform.tag == "Player")
                 {
-                    rb.gravityScale = 5;
+                    rb.gravityScale = gravScale;
                     isFalling = true;
+                    Invoke("Destroy", aliveTime);
                 }
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Destroy()
     {
-        if(other.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            rb.gravityScale = 0;
-            boxCollider2D.enabled = false;
-        }
+        Destroy(gameObject);
     }
 }
