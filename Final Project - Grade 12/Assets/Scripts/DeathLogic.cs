@@ -11,7 +11,7 @@ public class DeathLogic : MonoBehaviour
     public GameOverScreen GameOverScreen;
     public bool dead;
 
-    [SerializeField] private int deadWait = 5;
+    [SerializeField] private float deadWait = 0.5f;
 
     private void Start()
     {

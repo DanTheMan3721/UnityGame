@@ -14887,6 +14887,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4046732598548898499, guid: 74cbc3cca9425ca4cba4c3ba42a0e2f5, type: 3}
+      propertyPath: deadWait
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046732598548898499, guid: 74cbc3cca9425ca4cba4c3ba42a0e2f5, type: 3}
+      propertyPath: GameOverScreen
+      value: 
+      objectReference: {fileID: 1439133842}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
