@@ -77,8 +77,9 @@ public class Damageable : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(isAlive && collision.tag == "Sword") {
+        if (isAlive && collision.tag == "Sword") {
             Hit(100);
+            Debug.Log("works");
         }
     }
     public void Hit(int damage)
