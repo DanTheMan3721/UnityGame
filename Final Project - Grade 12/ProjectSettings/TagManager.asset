@@ -7,6 +7,8 @@ TagManager:
   - PickUp
   - Death
   - QuickSand
+  - Weapon
+  - Sword
   layers:
   - Default
   - TransparentFX
