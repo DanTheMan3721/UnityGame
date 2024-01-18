@@ -13108,6 +13108,10 @@ PrefabInstance:
       value: -0.09768605
       objectReference: {fileID: 0}
     - target: {fileID: 3121479038745668052, guid: 74cbc3cca9425ca4cba4c3ba42a0e2f5, type: 3}
+      propertyPath: movementSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121479038745668052, guid: 74cbc3cca9425ca4cba4c3ba42a0e2f5, type: 3}
       propertyPath: sandJumpForce
       value: 2
       objectReference: {fileID: 0}
