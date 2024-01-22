@@ -41,6 +41,6 @@ public class Pressed : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
             buttonPressed = false;
-            anim.ResetTrigger("Pressed");       
+            anim.ResetTrigger("Pressed");
     }
 }
