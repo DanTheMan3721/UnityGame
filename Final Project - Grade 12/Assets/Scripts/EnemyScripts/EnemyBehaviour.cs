@@ -19,6 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float dirX = 0f;
 
     
+    
     private SpriteRenderer sprite;
     private Animator anim;
 
@@ -106,6 +107,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
+
             if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
             {
                 FlipDirection();
@@ -119,7 +121,14 @@ public class EnemyBehaviour : MonoBehaviour
         }
         
     }
+    private void OnTriggerEnter2D(Collider2D pickUp)
+    {
+        if (pickUp.tag == "enemyWall")
+        {
+            FlipDirection();
+        }
 
+    }
     private void FlipDirection()
     {
         if (walkDirection == WalkableDirection.Right)
