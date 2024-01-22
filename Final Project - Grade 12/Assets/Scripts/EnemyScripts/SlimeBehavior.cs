@@ -6,6 +6,7 @@ public class SlimeBehavior : MonoBehaviour
 {
     public GameObject player;
     public float speed;
+    public float jumpSpeed;
     public DetectionZone attackZone;
     public float checkRadius;
     public float walkStopRate = 0.6f;
@@ -15,7 +16,7 @@ public class SlimeBehavior : MonoBehaviour
 
     private float distance;
     private float dirX = 0f;
-
+    public float timeElapsed = 0;
 
     private SpriteRenderer sprite;
     private Animator anim;
@@ -48,6 +49,9 @@ public class SlimeBehavior : MonoBehaviour
     }
 
     public bool HasTarget = false;
+    public float timeBeforeJump = 0.5f;
+    public float maxTime;
+
     public bool hasTarget
     {
         get { return HasTarget; }
@@ -84,47 +88,69 @@ public class SlimeBehavior : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = player.transform.position - transform.position;
-        if (distance < checkRadius)
+        timeElapsed += Time.deltaTime;
+        if (touchingDirections.isGrounded)
         {
-            if (CanMove)
+            
+            if (distance < checkRadius)
             {
-                //transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-                if (player.transform.position.x > transform.position.x)
+                if (CanMove)
                 {
-                    walkDirection = WalkableDirection.Right;
-                    rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
-                }
-                else if (player.transform.position.x < transform.position.x)
-                {
-                    walkDirection = WalkableDirection.Left;
-                    rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
+
+                    //transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+                    if (player.transform.position.x > transform.position.x)
+                    {
+                        walkDirection = WalkableDirection.Right;
+                        if (timeElapsed >= timeBeforeJump)
+                        {
+                            rb.velocity = new Vector2(speed * walkDirectionVector.x, jumpSpeed);
+                        }
+                    }
+                    else if (player.transform.position.x < transform.position.x)
+                    {
+                        walkDirection = WalkableDirection.Left;
+                        if (timeElapsed >= timeBeforeJump)
+                        {
+                            rb.velocity = new Vector2(speed * walkDirectionVector.x, jumpSpeed);
+                        }
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
                 }
                 else
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
                 }
             }
             else
             {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+                if (touchingDirections.IsOnWall)
+                {
+                    FlipDirection();
+                }
+                if (CanMove)
+                    if (timeElapsed >= timeBeforeJump)
+                    {
+                        rb.velocity = new Vector2(speed * walkDirectionVector.x, jumpSpeed);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+                    }
             }
         }
         else
         {
-            if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
-            {
-                FlipDirection();
-            }
-            if (CanMove)
-                rb.velocity = new Vector2(speed * walkDirectionVector.x, rb.velocity.y);
-            else
-            {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-            }
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+        }
+        if (timeElapsed >= maxTime)
+        {
+            timeElapsed = 0;
         }
 
     }
-
     private void FlipDirection()
     {
         if (walkDirection == WalkableDirection.Right)
@@ -139,27 +165,5 @@ public class SlimeBehavior : MonoBehaviour
         {
             Debug.LogError("Walkable direction not set to legal value");
         }
-    }
-
-    private void AnimationStateUpdater()
-    {
-        MovementState state;
-
-        if (walkDirectionVector == Vector2.left)
-        {
-            state = MovementState.running;
-            sprite.flipX = false;
-        }
-        else if (walkDirectionVector == Vector2.right)
-        {
-            state = MovementState.running;
-            sprite.flipX = true;
-        }
-        else
-        {
-            state = MovementState.idle;
-        }
-
-        anim.SetInteger("State", (int)state);
     }
 }
