@@ -9,6 +9,7 @@ TagManager:
   - QuickSand
   - Weapon
   - Sword
+  - enemyWall
   layers:
   - Default
   - TransparentFX
