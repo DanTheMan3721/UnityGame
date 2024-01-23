@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class PickUpScript : MonoBehaviour
 {
-    public GameObject pickup;
     public int pickUpCount = 0;
     public TextMeshProUGUI count;
     public int totalPickUps = 0;
+    public GameObject portal;
     private void OnTriggerEnter2D(Collider2D pickUp)
     {
         if (pickUp.tag == "PickUp")
@@ -22,5 +22,9 @@ public class PickUpScript : MonoBehaviour
     private void Update()
     {
         count.text = "Gems Collected: " + pickUpCount.ToString() + " / " + totalPickUps.ToString();
+        if (pickUpCount == totalPickUps)
+        {
+            portal.SetActive(true);
+        }
     }
 }
