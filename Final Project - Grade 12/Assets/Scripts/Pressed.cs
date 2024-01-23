@@ -26,8 +26,6 @@ public class Pressed : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
-        {
             buttonPressed = true;
             for (int i = 0; i < 1; i++)
             {
@@ -38,15 +36,11 @@ public class Pressed : MonoBehaviour
                 }
             }
             anim.SetTrigger("Pressed");
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
-        {
             buttonPressed = false;
-            anim.ResetTrigger("Pressed");       
-        }
+            anim.ResetTrigger("Pressed");
     }
 }
