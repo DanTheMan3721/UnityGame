@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6301935772159653760}
   - component: {fileID: 736375314353950521}
   - component: {fileID: 1811245638039939548}
+  - component: {fileID: 4352669668072579129}
   m_Layer: 6
   m_Name: Wood Button Platform
   m_TagString: Untagged
@@ -209,6 +210,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5294418, y: 0.06437397}
   m_EdgeRadius: 0
+--- !u!114 &4352669668072579129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789876099670909930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44663d3084402e64c8fb01a2f953e54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 0
 --- !u!1 &7891834869976231788
 GameObject:
   m_ObjectHideFlags: 0
