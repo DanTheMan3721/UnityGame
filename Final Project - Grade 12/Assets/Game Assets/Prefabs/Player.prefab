@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4046732598548898499}
   - component: {fileID: 1908925237896936351}
   - component: {fileID: 3226545519959230319}
+  - component: {fileID: 5165654302661905095}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -40,6 +41,7 @@ Transform:
   - {fileID: 8353314474023270764}
   - {fileID: 7148056091012114551}
   - {fileID: 2594955497679595593}
+  - {fileID: 5638680326579130497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5567359897884568578
@@ -195,6 +197,7 @@ MonoBehaviour:
   sandMoveSpeed: 1
   sandJumpForce: 2
   slowFallSpeed: 5
+  swordTime: 0.6
 --- !u!95 &6253852842421581357
 Animator:
   serializedVersion: 5
@@ -243,10 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa64a107f8238164389b9acb5cf5e4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: {fileID: 0}
   pickUpCount: 0
   count: {fileID: 0}
   totalPickUps: 0
+  portal: {fileID: 0}
 --- !u!114 &3226545519959230319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +263,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inSand: 0
+--- !u!114 &5165654302661905095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413950633950289705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a536304b65f184bacb939b18dba210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Projectile: {fileID: 9153724439682741600, guid: da736ecb099ecba4d8c33ab30bcd32fd, type: 3}
+  launchPos: {fileID: 5638680326579130497}
+  Sprite: {fileID: 0}
 --- !u!1 &1568667776001806436
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +305,37 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2900324369435877357}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1627418922237357887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5638680326579130497}
+  m_Layer: 0
+  m_Name: BowAttack
+  m_TagString: Arrow
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5638680326579130497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627418922237357887}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.52, y: -0.189, z: -0.99379206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2900324369435877357}

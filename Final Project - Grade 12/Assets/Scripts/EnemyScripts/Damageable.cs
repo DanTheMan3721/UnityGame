@@ -80,6 +80,10 @@ public class Damageable : MonoBehaviour
         if(isAlive && collision.tag == "Sword") {
             Hit(100);
         }
+        if (isAlive && collision.tag == "Arrow")
+        {
+            Hit(100);
+        }
     }
     public void Hit(int damage)
     {
