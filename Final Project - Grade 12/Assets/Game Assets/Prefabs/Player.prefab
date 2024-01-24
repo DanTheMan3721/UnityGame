@@ -42,6 +42,7 @@ Transform:
   - {fileID: 7148056091012114551}
   - {fileID: 2594955497679595593}
   - {fileID: 5638680326579130497}
+  - {fileID: 3697551847277029707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5567359897884568578
@@ -277,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projectile: {fileID: 9153724439682741600, guid: da736ecb099ecba4d8c33ab30bcd32fd, type: 3}
   launchPos: {fileID: 5638680326579130497}
+  backLaunchPos: {fileID: 3697551847277029707}
   Sprite: {fileID: 0}
 --- !u!1 &1568667776001806436
 GameObject:
@@ -334,7 +336,7 @@ Transform:
   m_GameObject: {fileID: 1627418922237357887}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.52, y: -0.189, z: -0.99379206}
+  m_LocalPosition: {x: 1.02, y: -0.189, z: -0.99379206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -472,6 +474,37 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2900324369435877357}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5493491369282708183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3697551847277029707}
+  m_Layer: 0
+  m_Name: BowAttack (1)
+  m_TagString: Arrow
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3697551847277029707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493491369282708183}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.52, y: -0.189, z: -0.99379206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2900324369435877357}
