@@ -93,6 +93,13 @@ public class PlayerMovement : MonoBehaviour
                             rb.velocity = new Vector2(0, rb.velocity.y);
                             StartCoroutine(attackActionCooldown());
                         }
+                        if (Input.GetButtonDown("Fire2"))
+                        {
+                            attack = true;
+                            anim.SetTrigger(AnimationStrings.bowAttack);
+                            rb.velocity = new Vector2(0, rb.velocity.y);
+                            StartCoroutine(attackActionCooldown());
+                        }
                     }
                 }
 
