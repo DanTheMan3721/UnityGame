@@ -49833,6 +49833,10 @@ PrefabInstance:
       propertyPath: m_UseOneWay
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6301935772159653760, guid: 2ea67062fcabb7c4c8891da9f6e870e8, type: 3}
+      propertyPath: m_UseColliderMask
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7870270331717649177, guid: 2ea67062fcabb7c4c8891da9f6e870e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.42
